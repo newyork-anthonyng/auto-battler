@@ -1,6 +1,7 @@
+import React from "react";
 import imageMap from "../imageMap";
 
-function Animal({ name, attack, health, id, isBattling }) {
+function Animal({ name, attack, health, id, isBattling }, ref) {
   const animalImage = imageMap[name];
 
   if (health === 0) {
@@ -9,8 +10,9 @@ function Animal({ name, attack, health, id, isBattling }) {
 
   return (
     <div
-      className={`animal window ${isBattling && "animal--battling"}`}
+      className={`animal window ${isBattling ? "animal--battling" : ""}`}
       id={id}
+      ref={ref}
     >
       <div className="animal__image">{animalImage}</div>
       <div className="animal__stats">
@@ -31,4 +33,4 @@ function Animal({ name, attack, health, id, isBattling }) {
   );
 }
 
-export default Animal;
+export default React.forwardRef(Animal);

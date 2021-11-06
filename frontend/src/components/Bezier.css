@@ -1,0 +1,24 @@
+[data-reverse="true"] .bezier {
+  transform: scaleX(-1);
+}
+
+.bezier {
+  position: absolute;
+  left: 0;
+  top: var(--height);
+
+  animation: xAxis 1s linear,
+    yAxis 1s cubic-bezier(0, var(--vValue), 1, var(--vValue));
+}
+
+@keyframes xAxis {
+  to {
+    left: calc(100% - 25px);
+  }
+}
+
+@keyframes yAxis {
+  to {
+    top: var(--heightIncrement);
+  }
+}

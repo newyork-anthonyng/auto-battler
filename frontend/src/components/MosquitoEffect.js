@@ -1,45 +1,38 @@
 import React from "react";
-import Rock from "./Rock";
+import Bezier from "./Bezier";
+import "./MosquitoEffect.css";
 
-function MosquitoEffect({ event }) {
-  const { from, to } = event;
+function MosquitoEffect({ leftElem, rightElem }) {
+  const [didAnimate, setDidAnimate] = React.useState(false);
+  const [, setDidMount] = React.useState(false);
+  const parentEle = React.useRef(null);
 
-  const [fromXCoord, setFromXCoord] = React.useState(null);
-  const [toXCoord, setToXCoord] = React.useState(null);
-
-  // get x, y coordinate for "from"
   React.useEffect(() => {
-    // from => Team1.1
-    // to => Team2.1
-    const fromEle = document.getElementById(from);
-    const toEle = document.getElementById(to);
-
-    const fromCoord = fromEle && fromEle.getBoundingClientRect();
-    const toCoord = toEle && toEle.getBoundingClientRect();
-
-    setFromXCoord(fromCoord.x);
-    setToXCoord(toCoord.x + toCoord.width);
-
-    console.group("MosquitoEffect");
-    console.log(fromCoord);
-    console.log(toCoord);
-    console.groupEnd("MosquitoEffect");
-    // console.log(event);
+    setDidMount(true);
   }, []);
-  // get x, y coordinate for "to"
-  // draw a div, with left-side starting at "from.x from.y"
-  // draw a div, with right-side starting at "to.x to.y"
+
+  if (!leftElem || !rightElem) return null;
+  if (didAnimate) return null;
+
+  const fromCoord = leftElem.getBoundingClientRect();
+  const toCoord = rightElem.getBoundingClientRect();
+  const fromXCoord = fromCoord.x;
+  const toXCoord = toCoord.x + toCoord.width;
+  const width = Math.abs(fromXCoord - toXCoord);
 
   const style = {};
-  const didLoadCoords = fromXCoord !== null;
-  if (didLoadCoords) {
-    style.left = fromXCoord; // 117px
-    style.width = Math.abs(toXCoord - fromXCoord); // 700px
+  style.left = fromXCoord;
+  style.width = width;
+
+  function handleAnimationEnd() {
+    setDidAnimate(true);
   }
 
   return (
-    <div className="effect effect__mosquito" style={style}>
-      <Rock />
+    <div className="mosquito-effect" style={style} ref={parentEle}>
+      <Bezier parentEle={parentEle.current} onAnimationEnd={handleAnimationEnd}>
+        <div className="rock" />
+      </Bezier>
     </div>
   );
 }
