@@ -1,0 +1,153 @@
+:root {
+  --blue: #c2e6e3;
+  --pink: #f4d4d1;
+  --tan: #faf5e7;
+  --white: #f7f1e3;
+  --black: #32302c;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  position: relative;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--pink);
+  color: var(--black);
+  font-size: 24px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: clamp(12px, 3vw, 20px);
+}
+
+.animal {
+  display: inline-block;
+  margin-right: 16px;
+}
+
+.animal--battling {
+  transform: translateX(100px);
+  animation: attackRight 0.3s ease-in;
+}
+
+@keyframes attackRight {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100px);
+  }
+}
+
+[data-team-id="2"] .animal--battling {
+  transform: translateX(-100px);
+  animation: attackLeft 0.3s ease-in;
+}
+
+@keyframes attackLeft {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100px);
+  }
+}
+
+.window {
+  margin: 1rem;
+  background: var(--white);
+  border: solid 0.2rem var(--black);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0.4rem 0.4rem var(--black);
+}
+
+.animal__image {
+  font-size: 32px;
+  animation: pulse 1.5s ease-in-out infinite;
+  animation-delay: 250ms;
+  margin-bottom: 0.5em;
+}
+
+[data-team-id="1"] .animal__image {
+  animation: pulseFlipped 1.5s ease-in-out infinite;
+  transform: scale(-1, 1);
+}
+
+.animal__stats {
+}
+
+.effect {
+  position: absolute;
+  /* border: 3px solid red; */
+  bottom: 100px;
+  top: 0;
+}
+
+.team {
+  width: 50%;
+  padding: 16px;
+}
+
+.team[data-team-id="2"] {
+  text-align: right;
+}
+
+.game {
+  display: flex;
+  justify-content: space-between;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pulseFlipped {
+  from {
+    transform: scale3d(-1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(-1.1, 1.1, 1.1);
+  }
+
+  to {
+    transform: scale3d(-1, 1, 1);
+  }
+}
+
+select,
+input,
+button {
+  border: solid 0.2rem var(--black);
+  background: transparent;
+  padding: 0.5rem;
+}
+
+[disabled] {
+  opacity: 0.5;
+}
+
+button {
+  background: var(--pink);
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+}
