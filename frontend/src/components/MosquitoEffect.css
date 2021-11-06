@@ -1,0 +1,13 @@
+.rock {
+  height: 25px;
+  width: 25px;
+  background-color: lightblue;
+  border: solid 0.2rem var(--black);
+  border-radius: 50%;
+}
+
+.mosquito-effect {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}

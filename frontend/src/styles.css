@@ -14,7 +14,8 @@
 }
 
 html,
-body {
+body,
+#root {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -24,6 +25,21 @@ body {
   font-size: 24px;
   font-family: "Noto Sans JP", sans-serif;
   font-size: clamp(12px, 3vw, 20px);
+}
+
+.app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.game {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .animal {
@@ -71,7 +87,7 @@ body {
 }
 
 .animal__image {
-  font-size: 32px;
+  font-size: 64px;
   animation: pulse 1.5s ease-in-out infinite;
   animation-delay: 250ms;
   margin-bottom: 0.5em;
@@ -80,16 +96,6 @@ body {
 [data-team-id="1"] .animal__image {
   animation: pulseFlipped 1.5s ease-in-out infinite;
   transform: scale(-1, 1);
-}
-
-.animal__stats {
-}
-
-.effect {
-  position: absolute;
-  /* border: 3px solid red; */
-  bottom: 100px;
-  top: 0;
 }
 
 .team {
@@ -104,6 +110,7 @@ body {
 .game {
   display: flex;
   justify-content: space-between;
+  padding-top: 10em;
 }
 
 @keyframes pulse {
