@@ -1,0 +1,97 @@
+.animal {
+  display: inline-block;
+  margin-right: 16px;
+
+  margin: 1rem;
+  background: var(--white);
+  border: solid 0.2rem var(--black);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0.4rem 0.4rem var(--black);
+
+  transition: all 0.3s;
+}
+
+.animal--ready {
+  transform: translateX(100%) rotate(-30deg);
+  animation: attackRight 0.3s ease-in;
+}
+
+@keyframes attackRight {
+  0% {
+    transform: translateX(0) rotate(0);
+  }
+
+  100% {
+    transform: translateX(100%) rotate(-30deg);
+  }
+}
+
+[data-team-id="2"] .animal--ready {
+  transform: translateX(-100%) rotate(30deg);
+  animation: attackLeft 0.3s ease-in;
+}
+
+@keyframes attackLeft {
+  0% {
+    transform: translateX(0) rotate(0);
+  }
+
+  100% {
+    transform: translateX(-100%) rotate(30deg);
+  }
+}
+
+.animal__image {
+  font-size: 64px;
+  animation: pulse 1.5s ease-in-out infinite;
+  animation-delay: 250ms;
+  margin-bottom: 0.5em;
+}
+
+[data-team-id="1"] .animal__image {
+  animation: pulseFlipped 1.5s ease-in-out infinite;
+  transform: scale(-1, 1);
+}
+
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pulseFlipped {
+  from {
+    transform: scale3d(-1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(-1.1, 1.1, 1.1);
+  }
+
+  to {
+    transform: scale3d(-1, 1, 1);
+  }
+}
+
+.animal--fainting {
+  transform: translate3d(-200vw, -200vh, 0);
+  opacity: 0;
+}
+
+[data-team-id="2"] .animal--fainting {
+  transform: translate3d(200vw, -200vh, 0);
+}
+
+.animal--fainted {
+  opacity: 0;
+}
