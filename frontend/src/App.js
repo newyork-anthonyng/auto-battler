@@ -5,11 +5,30 @@ import Animal from "./components/Animal";
 import MosquitoEffect from "./components/MosquitoEffect";
 import CONSTANTS from "./constants";
 
-function isBattling(animal, event) {
-  return (
-    event.description === CONSTANTS.BATTLE &&
-    (animal.id === event.from || animal.id === event.to)
-  );
+// TODO: this has some nasty nested if-else conditionals
+// Add some tests for this, or clean it up.
+function getAnimalStatus(animal, event) {
+  const isAnimalParticipating =
+    animal.id === event.from || animal.id === event.to;
+
+  const isFainted = animal.health === 0;
+
+  if (isAnimalParticipating) {
+    const isBattling = event.description === CONSTANTS.BATTLE;
+    const isFainting = isBattling && isFainted;
+
+    if (isFainting) {
+      return CONSTANTS.FAINTING;
+    }
+
+    return event.description;
+  } else {
+    if (isFainted) {
+      return CONSTANTS.FAINTED;
+    }
+
+    return CONSTANTS.IDLE;
+  }
 }
 
 function reverseArray(array) {
@@ -32,19 +51,24 @@ export default function App() {
 
   const currentEvent = data[currentIndex];
 
+  function handlePreviousEvent() {
+    const prevIndex = Math.max(0, currentIndex - 1);
+    setCurrentIndex(prevIndex);
+  }
+
   function handleNextEvent() {
     const nextIndex = Math.min(currentIndex + 1, data.length - 1);
     setCurrentIndex(nextIndex);
   }
 
   const team1 = reverseArray(currentEvent.team1).map((animal) => {
-    const battle = isBattling(animal, currentEvent);
+    const status = getAnimalStatus(animal, currentEvent);
 
     return (
       <Animal
         key={animal.id}
         {...animal}
-        isBattling={battle}
+        status={status}
         ref={(dom) => {
           elementRefs.current[animal.id] = dom;
         }}
@@ -53,12 +77,12 @@ export default function App() {
   });
 
   const team2 = currentEvent.team2.map((animal) => {
-    const battle = isBattling(animal, currentEvent);
+    const status = getAnimalStatus(animal, currentEvent);
     return (
       <Animal
         key={animal.id}
         {...animal}
-        isBattling={battle}
+        status={status}
         ref={(dom) => {
           elementRefs.current[animal.id] = dom;
         }}
@@ -82,9 +106,14 @@ export default function App() {
 
   return (
     <div className="app">
-      <button onClick={handleNextEvent}>Next</button>
+      <div>
+        <button onClick={handlePreviousEvent}>Previous</button>
+        <button onClick={handleNextEvent}>Next</button>
+      </div>
 
-      {/* <pre>{JSON.stringify(currentEvent, null, 2)}</pre> */}
+      <pre style={{ fontSize: 10 }}>
+        {JSON.stringify(currentEvent, null, 2)}
+      </pre>
 
       <div className="game">
         <div className="team" data-team-id="1">

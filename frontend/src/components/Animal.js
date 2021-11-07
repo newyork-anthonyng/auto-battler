@@ -1,19 +1,22 @@
 import React from "react";
 import imageMap from "../imageMap";
+import CONSTANTS from "../constants";
+import "./Animal.css";
 
-function Animal({ name, attack, health, id, isBattling }, ref) {
+const classMappings = {
+  [CONSTANTS.IDLE]: "animal--idle",
+  [CONSTANTS.READYBATTLE]: "animal--ready",
+  [CONSTANTS.BATTLE]: "animal--battling",
+  [CONSTANTS.FAINTING]: "animal--fainting",
+  [CONSTANTS.FAINTED]: "animal--fainted",
+};
+
+function Animal({ name, attack, health, id, status }, ref) {
   const animalImage = imageMap[name];
-
-  if (health === 0) {
-    return null;
-  }
+  const statusClassName = classMappings[status];
 
   return (
-    <div
-      className={`animal window ${isBattling ? "animal--battling" : ""}`}
-      id={id}
-      ref={ref}
-    >
+    <div className={`animal ${statusClassName}`} ref={ref}>
       <div className="animal__image">{animalImage}</div>
       <div className="animal__stats">
         <div className="animal__stats__attack">

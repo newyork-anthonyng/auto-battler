@@ -5,12 +5,12 @@ const data = [
     description: "initial",
     team1: [
       { id: "team1.1", name: "mosquito", attack: 1, health: 1 },
-      { id: "team1.2", name: "fish", attack: 2, health: 3 }
+      { id: "team1.2", name: "fish", attack: 2, health: 3 },
     ],
     team2: [
       { id: "team2.1", name: "cricket", attack: 2, health: 1 },
-      { id: "team2.2", name: "pig", attack: 3, health: 2 }
-    ]
+      { id: "team2.2", name: "pig", attack: 3, health: 2 },
+    ],
   },
   {
     from: "team1.1",
@@ -18,12 +18,26 @@ const data = [
     description: "mosquito.effect",
     team1: [
       { id: "team1.1", name: "mosquito", attack: 1, health: 1 },
-      { id: "team1.2", name: "fish", attack: 2, health: 3 }
+      { id: "team1.2", name: "fish", attack: 2, health: 3 },
     ],
     team2: [
       { id: "team2.1", name: "cricket", attack: 2, health: 1 },
-      { id: "team2.2", name: "pig", attack: 3, health: 1 }
-    ]
+      { id: "team2.2", name: "pig", attack: 3, health: 1 },
+    ],
+  },
+
+  {
+    from: "team1.1",
+    to: "team2.1",
+    description: "ready",
+    team1: [
+      { id: "team1.1", name: "mosquito", attack: 1, health: 1 },
+      { id: "team1.2", name: "fish", attack: 2, health: 3 },
+    ],
+    team2: [
+      { id: "team2.1", name: "cricket", attack: 2, health: 1 },
+      { id: "team2.2", name: "pig", attack: 3, health: 1 },
+    ],
   },
 
   {
@@ -32,12 +46,12 @@ const data = [
     description: "battle",
     team1: [
       { id: "team1.1", name: "mosquito", attack: 1, health: 0 },
-      { id: "team1.2", name: "fish", attack: 2, health: 3 }
+      { id: "team1.2", name: "fish", attack: 2, health: 3 },
     ],
     team2: [
       { id: "team2.1", name: "cricket", attack: 2, health: 0 },
-      { id: "team2.2", name: "pig", attack: 3, health: 1 }
-    ]
+      { id: "team2.2", name: "pig", attack: 3, health: 1 },
+    ],
   },
   {
     from: "team2.1",
@@ -45,12 +59,26 @@ const data = [
     description: "cricket.effect",
     team1: [
       { id: "team1.1", name: "mosquito", attack: 1, health: 0 },
-      { id: "team1.2", name: "fish", attack: 2, health: 3 }
+      { id: "team1.2", name: "fish", attack: 2, health: 3 },
     ],
     team2: [
       { id: "team2.1", name: "cricket.zombie", attack: 1, health: 1 },
-      { id: "team2.2", name: "pig", attack: 3, health: 1 }
-    ]
+      { id: "team2.2", name: "pig", attack: 3, health: 1 },
+    ],
+  },
+
+  {
+    from: "team1.2",
+    to: "team2.1",
+    description: "ready",
+    team1: [
+      { id: "team1.1", name: "mosquito", attack: 1, health: 0 },
+      { id: "team1.2", name: "fish", attack: 2, health: 3 },
+    ],
+    team2: [
+      { id: "team2.1", name: "cricket.zombie", attack: 1, health: 1 },
+      { id: "team2.2", name: "pig", attack: 3, health: 1 },
+    ],
   },
 
   {
@@ -59,12 +87,26 @@ const data = [
     description: "battle",
     team1: [
       { id: "team1.1", name: "mosquito", attack: 1, health: 0 },
-      { id: "team1.2", name: "fish", attack: 2, health: 2 }
+      { id: "team1.2", name: "fish", attack: 2, health: 2 },
     ],
     team2: [
       { id: "team2.1", name: "cricket.zombie", attack: 1, health: 0 },
-      { id: "team2.2", name: "pig", attack: 3, health: 1 }
-    ]
+      { id: "team2.2", name: "pig", attack: 3, health: 1 },
+    ],
+  },
+
+  {
+    from: "team1.2",
+    to: "team2.2",
+    description: "ready",
+    team1: [
+      { id: "team1.1", name: "mosquito", attack: 1, health: 0 },
+      { id: "team1.2", name: "fish", attack: 2, health: 2 },
+    ],
+    team2: [
+      { id: "team2.1", name: "cricket.zombie", attack: 1, health: 0 },
+      { id: "team2.2", name: "pig", attack: 3, health: 1 },
+    ],
   },
 
   {
@@ -73,25 +115,25 @@ const data = [
     description: "battle",
     team1: [
       { id: "team1.1", name: "mosquito", attack: 1, health: 0 },
-      { id: "team1.2", name: "fish", attack: 2, health: 1 }
+      { id: "team1.2", name: "fish", attack: 2, health: 1 },
     ],
     team2: [
       { id: "team2.1", name: "cricket.zombie", attack: 1, health: 0 },
-      { id: "team2.2", name: "pig", attack: 3, health: 0 }
-    ]
+      { id: "team2.2", name: "pig", attack: 3, health: 0 },
+    ],
   },
 
   {
     result: "Team1",
     team1: [
       { id: "team1.1", name: "mosquito", attack: 1, health: 0 },
-      { id: "team1.2", name: "fish", attack: 2, health: 1 }
+      { id: "team1.2", name: "fish", attack: 2, health: 1 },
     ],
     team2: [
       { id: "team2.1", name: "cricket.zombie", attack: 1, health: 0 },
-      { id: "team2.2", name: "pig", attack: 3, health: 0 }
-    ]
-  }
+      { id: "team2.2", name: "pig", attack: 3, health: 0 },
+    ],
+  },
 ];
 
 export default data;
